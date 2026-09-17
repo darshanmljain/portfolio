@@ -149,7 +149,7 @@ a {
     padding: 0 1.5rem;
     display: flex;
     align-items: center;
-    gap: 3rem;
+    gap: 3.5rem;
 }
 
 .hero-image-wrapper {
@@ -158,12 +158,12 @@ a {
 }
 
 .profile-img {
-    width: 180px;
-    height: 180px;
+    width: 240px;
+    height: 240px;
     border-radius: 50%;
     object-fit: cover;
     border: 3px solid var(--accent-color);
-    box-shadow: 0 0 25px var(--glow-color);
+    box-shadow: 0 0 30px var(--glow-color);
     position: relative;
     z-index: 2;
 }
