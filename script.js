@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
             document.removeEventListener('touchstart', handleFirstInteraction);
         }
 
-        // Add first user gesture listeners (overcomes browser autoplay restrictions)
+        // Add first user gesture listeners
         document.addEventListener('click', handleFirstInteraction);
         document.addEventListener('keydown', handleFirstInteraction);
         document.addEventListener('touchstart', handleFirstInteraction);
@@ -57,14 +57,14 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // 404 File Load Error Detection
+        // Audio File Error Detection
         bgAudio.addEventListener('error', () => {
             console.error('Audio Error Code:', bgAudio.error);
             alert('⚠️ Audio Load Error: Could not find "audio/fur-elise.mp3". Please verify that the file exists in your PORTFOLIO/audio folder and is named exactly "fur-elise.mp3".');
         });
     }
 
-    // Navigation Toggle for Mobile
+    // Mobile Navigation Menu Toggle
     const navToggle = document.getElementById('navToggle');
     const navMenu = document.getElementById('navMenu');
 
@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Project Category Filtering
+    // Project Filtering
     const filterButtons = document.querySelectorAll('.filter-btn');
     const projectCards = document.querySelectorAll('.project-card');
 
@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Custom Trailing Cursor Physics
+    // Custom Trailing Cursor
     const cursorDot = document.getElementById('cursorDot');
     const cursorOutline = document.getElementById('cursorOutline');
 
