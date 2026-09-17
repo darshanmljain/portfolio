@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.addEventListener('mousemove', handleFirstInteraction, { once: true });
         document.addEventListener('scroll', handleFirstInteraction, { once: true });
 
-        // Circular 🎵 Button Manual Toggle
+        // Circular 💿 Button Manual Toggle
         audioToggleBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             if (isPlaying) {

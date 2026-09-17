@@ -104,7 +104,7 @@ a {
     color: var(--accent-color);
 }
 
-/* Music Button (Default: Static / Muted / Grayscale) */
+/* CD Music Button (Default: Static / Muted / Grayscale) */
 .audio-toggle-btn {
     background-color: rgba(30, 41, 59, 0.6);
     border: 1px solid var(--card-border);
@@ -114,7 +114,7 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.15rem;
+    font-size: 1.25rem;
     cursor: pointer;
     filter: grayscale(100%);
     opacity: 0.6;
@@ -127,14 +127,14 @@ a {
     border-color: var(--accent-color);
 }
 
-/* Music Button (Playing: Full Color + Continuous 360 Degree Rotation) */
+/* CD Music Button (Playing: Full Color + 360 Degree CD Spinning Animation) */
 .audio-toggle-btn.playing {
     background-color: rgba(56, 189, 248, 0.2);
     border-color: var(--accent-color);
     filter: grayscale(0%);
     opacity: 1;
     box-shadow: 0 0 20px rgba(56, 189, 248, 0.6);
-    animation: spinCD 3s linear infinite; /* Rotates only while playing */
+    animation: spinCD 3s linear infinite; /* Rotates like a spinning CD while playing */
 }
 
 @keyframes spinCD {
@@ -264,7 +264,7 @@ a {
 .gradient-text {
     background: linear-gradient(135deg, var(--accent-color), #818cf8);
     -webkit-background-clip: text;
-    background-clip: text; /* Standard property for compatibility */
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
