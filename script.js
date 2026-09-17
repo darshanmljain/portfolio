@@ -6,6 +6,31 @@ document.addEventListener('DOMContentLoaded', () => {
         yearSpan.textContent = new Date().getFullYear();
     }
 
+    // Audio Player Toggle Logic
+    const bgAudio = document.getElementById('bgAudio');
+    const audioToggleBtn = document.getElementById('audioToggleBtn');
+
+    if (bgAudio && audioToggleBtn) {
+        let isPlaying = false;
+
+        audioToggleBtn.addEventListener('click', () => {
+            if (isPlaying) {
+                bgAudio.pause();
+                audioToggleBtn.classList.remove('playing');
+                audioToggleBtn.querySelector('.audio-text').textContent = 'Für Elise';
+                isPlaying = false;
+            } else {
+                bgAudio.play().then(() => {
+                    audioToggleBtn.classList.add('playing');
+                    audioToggleBtn.querySelector('.audio-text').textContent = 'Playing...';
+                    isPlaying = true;
+                }).catch(err => {
+                    console.error('Audio playback interaction error:', err);
+                });
+            }
+        });
+    }
+
     // Navigation Toggle for Mobile
     const navToggle = document.getElementById('navToggle');
     const navMenu = document.getElementById('navMenu');
@@ -45,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Soft-Blur Photo Zoom Lightbox Modal
+    // Photo Lightbox Zoom Modal
     const modal = document.getElementById('imageModal');
     const profileImg = document.getElementById('profileImg');
     const modalImg = document.getElementById('modalImg');

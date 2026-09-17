@@ -16,6 +16,12 @@
     <div class="cursor-dot" id="cursorDot"></div>
     <div class="cursor-outline" id="cursorOutline"></div>
 
+    <!-- Background Audio File -->
+    <audio id="bgAudio" loop preload="auto">
+        <source src="audio/fur-elise.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
     <!-- Soft Translucent Blurred Photo Lightbox Modal -->
     <div id="imageModal" class="image-modal">
         <span class="modal-close" id="modalClose">&times;</span>
@@ -29,11 +35,24 @@
     <header class="navbar">
         <div class="nav-container">
             <a href="#" class="logo">Darshan<span class="accent-text"> Jain</span></a>
-            <button class="nav-toggle" id="navToggle" aria-label="Toggle Navigation">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </button>
+            
+            <div class="nav-right-group">
+                <!-- Audio Player Control Button -->
+                <button class="audio-toggle-btn" id="audioToggleBtn" aria-label="Toggle Background Music">
+                    <span class="audio-icon">🎵</span>
+                    <span class="audio-text">Für Elise</span>
+                    <span class="sound-wave" id="soundWave">
+                        <span></span><span></span><span></span>
+                    </span>
+                </button>
+
+                <button class="nav-toggle" id="navToggle" aria-label="Toggle Navigation">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </div>
+
             <ul class="nav-menu" id="navMenu">
                 <li><a href="#about" class="nav-link">About</a></li>
                 <li><a href="#skills" class="nav-link">Skills</a></li>
