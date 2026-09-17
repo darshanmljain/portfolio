@@ -413,42 +413,14 @@ a {
     font-size: 0.8rem;
 }
 
-/* Ambient Glow Cursor Follower (Native Cursor Remains Fully Visible) */
-.cursor-dot {
-    width: 8px;
-    height: 8px;
-    background-color: var(--accent-color);
-    border-radius: 50%;
+#cursorCanvas {
     position: fixed;
-    top: -100px;
-    left: -100px;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
     pointer-events: none;
     z-index: 9999;
-    transform: translate(-50%, -50%);
-    box-shadow: 0 0 12px var(--accent-color);
-    transition: width 0.2s ease, height 0.2s ease, background-color 0.2s ease;
-}
-
-.cursor-outline {
-    width: 40px;
-    height: 40px;
-    border: 1.5px solid rgba(56, 189, 248, 0.5);
-    border-radius: 50%;
-    position: fixed;
-    top: -100px;
-    left: -100px;
-    pointer-events: none;
-    z-index: 9998;
-    transform: translate(-50%, -50%);
-    transition: width 0.2s ease, height 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
-}
-
-body.cursor-hover .cursor-outline {
-    width: 60px;
-    height: 60px;
-    border-color: var(--accent-color);
-    background-color: rgba(56, 189, 248, 0.1);
-    box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
 }
 
 @media (max-width: 768px) {
@@ -487,7 +459,7 @@ body.cursor-hover .cursor-outline {
         gap: 1rem;
     }
 
-    .cursor-dot, .cursor-outline {
+    #cursorCanvas {
         display: none;
     }
 }

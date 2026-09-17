@@ -42,44 +42,99 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    const cursorDot = document.getElementById('cursorDot');
-    const cursorOutline = document.getElementById('cursorOutline');
+    const canvas = document.getElementById('cursorCanvas');
+    if (canvas && window.innerWidth > 768) {
+        const ctx = canvas.getContext('2d');
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
 
-    if (cursorDot && cursorOutline && window.innerWidth > 768) {
-        let mouseX = -100;
-        let mouseY = -100;
-        let outlineX = -100;
-        let outlineY = -100;
+        window.addEventListener('resize', () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        });
+
+        const particles = [];
+        let mouse = { x: -100, y: -100 };
 
         window.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
 
-            cursorDot.style.left = `${mouseX}px`;
-            cursorDot.style.top = `${mouseY}px`;
+            for (let i = 0; i < 2; i++) {
+                particles.push(new CloudParticle(mouse.x, mouse.y));
+            }
         });
 
-        function animateCursor() {
-            outlineX += (mouseX - outlineX) * 0.15;
-            outlineY += (mouseY - outlineY) * 0.15;
+        class CloudParticle {
+            constructor(x, y) {
+                this.x = x + (Math.random() - 0.5) * 6;
+                this.y = y + (Math.random() - 0.5) * 6;
+                this.radius = Math.random() * 6 + 6;
+                this.maxRadius = this.radius + Math.random() * 18 + 12;
+                this.vx = (Math.random() - 0.5) * 0.6;
+                this.vy = (Math.random() - 0.5) * 0.6 - 0.2;
+                this.alpha = 0.5;
+                this.decay = Math.random() * 0.015 + 0.01;
+            }
 
-            cursorOutline.style.left = `${outlineX}px`;
-            cursorOutline.style.top = `${outlineY}px`;
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                if (this.radius < this.maxRadius) {
+                    this.radius += 0.35;
+                }
+                this.alpha -= this.decay;
+            }
 
-            requestAnimationFrame(animateCursor);
+            draw() {
+                if (this.alpha <= 0) return;
+                ctx.save();
+                ctx.globalAlpha = Math.max(0, this.alpha);
+
+                let gradient = ctx.createRadialGradient(
+                    this.x, this.y, 0,
+                    this.x, this.y, Math.max(0.1, this.radius)
+                );
+                gradient.addColorStop(0, 'rgba(255, 255, 255, 0.9)');
+                gradient.addColorStop(0.4, 'rgba(215, 238, 255, 0.4)');
+                gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+
+                ctx.fillStyle = gradient;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, Math.max(0.1, this.radius), 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+            }
         }
-        animateCursor();
 
-        const interactiveElements = document.querySelectorAll('a, button, .project-card, .filter-btn, .skill-card, .social-btn, .tag');
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
 
-        interactiveElements.forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                document.body.classList.add('cursor-hover');
-            });
-            el.addEventListener('mouseleave', () => {
-                document.body.classList.remove('cursor-hover');
-            });
-        });
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+
+                if (particles[i].alpha <= 0) {
+                    particles.splice(i, 1);
+                    i--;
+                }
+            }
+
+            if (mouse.x > 0 && mouse.y > 0) {
+                ctx.save();
+                ctx.beginPath();
+                ctx.arc(mouse.x, mouse.y, 5, 0, Math.PI * 2);
+                ctx.fillStyle = '#ffffff';
+                ctx.shadowColor = '#ffffff';
+                ctx.shadowBlur = 12;
+                ctx.fill();
+                ctx.restore();
+            }
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
     }
 
 });

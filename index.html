@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Darshan Jain | Applied AI & Data Science Portfolio</title>
     <link rel="stylesheet" href="styles.css">
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -13,11 +12,8 @@
 </head>
 <body>
 
-    <!-- Custom Glowing Cursor Elements -->
-    <div class="cursor-dot" id="cursorDot"></div>
-    <div class="cursor-outline" id="cursorOutline"></div>
+    <canvas id="cursorCanvas"></canvas>
 
-    <!-- Sticky Navigation Bar -->
     <header class="navbar">
         <div class="nav-container">
             <a href="#" class="logo">Darshan<span class="accent-text"> Jain</span></a>
@@ -36,17 +32,12 @@
         </div>
     </header>
 
-    <!-- Hero Section with Profile Picture -->
     <section id="about" class="hero-section">
         <div class="hero-container">
-
-            <!-- Profile Image Container (.jpeg format) -->
             <div class="hero-image-wrapper">
                 <img src="images/profile.jpeg" alt="Darshan Jain - Profile Headshot" class="profile-img" onerror="this.src='https://via.placeholder.com/180?text=Darshan+Jain'">
                 <div class="image-border-glow"></div>
             </div>
-
-            <!-- Hero Text Content -->
             <div class="hero-content">
                 <div class="badge">
                     🎓 IIT Jodhpur · B.S. in Applied AI & Data Science
@@ -62,16 +53,13 @@
                     <a href="https://github.com" target="_blank" rel="noopener" class="btn btn-secondary">GitHub Profile</a>
                 </div>
             </div>
-
         </div>
     </section>
 
-    <!-- Skills & Stack Section -->
     <section id="skills" class="section">
         <div class="section-container">
             <h2 class="section-title">Technical Stack & Core Focus</h2>
             <div class="skills-grid">
-
                 <div class="skill-card">
                     <h3 class="skill-category">Languages & Fundamentals</h3>
                     <div class="tag-group">
@@ -81,7 +69,6 @@
                         <span class="tag">Data Structures</span>
                     </div>
                 </div>
-
                 <div class="skill-card">
                     <h3 class="skill-category">Machine Learning & AI</h3>
                     <div class="tag-group">
@@ -91,7 +78,6 @@
                         <span class="tag">NLP / LLMs</span>
                     </div>
                 </div>
-
                 <div class="skill-card">
                     <h3 class="skill-category">Tools & Deployment</h3>
                     <div class="tag-group">
@@ -101,12 +87,10 @@
                         <span class="tag">Jupyter Lab</span>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
 
-    <!-- Interactive Projects Section -->
     <section id="projects" class="section">
         <div class="section-container">
             <div class="section-header-flex">
@@ -114,16 +98,13 @@
                     <h2 class="section-title">Featured Projects</h2>
                     <p class="section-subtitle">Hands-on applications, datasets, and predictive models.</p>
                 </div>
-                <!-- Filter Buttons -->
                 <div class="project-filters">
                     <button class="filter-btn active" data-filter="all">All</button>
                     <button class="filter-btn" data-filter="ml">ML</button>
                     <button class="filter-btn" data-filter="ai">AI/LLM</button>
                 </div>
             </div>
-
             <div class="projects-grid">
-                <!-- Project 1 -->
                 <div class="project-card" data-category="ml">
                     <div class="card-header">
                         <h3>Predictive ML Pipeline</h3>
@@ -137,8 +118,6 @@
                         <a href="#" class="project-link">GitHub Code →</a>
                     </div>
                 </div>
-
-                <!-- Project 2 -->
                 <div class="project-card" data-category="ai">
                     <div class="card-header">
                         <h3>Interactive AI Web App</h3>
@@ -156,7 +135,6 @@
         </div>
     </section>
 
-    <!-- Education Section -->
     <section id="education" class="section">
         <div class="section-container">
             <h2 class="section-title">Education & Academic Background</h2>
@@ -172,7 +150,6 @@
         </div>
     </section>
 
-    <!-- Footer / Contact Section -->
     <footer id="contact" class="footer">
         <div class="section-container text-center">
             <h2 class="section-title">Let's Connect</h2>
