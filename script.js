@@ -12,22 +12,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (bgAudio && audioToggleBtn) {
         let isPlaying = false;
-        let playRequestInProgress = false;
 
         const playAudio = () => {
-            if (playRequestInProgress) {
-                return;
-            }
-
-            playRequestInProgress = true;
-            bgAudio.play().then(() => {
+            return bgAudio.play().then(() => {
                 isPlaying = true;
                 audioToggleBtn.classList.add('playing');
                 audioToggleBtn.setAttribute('aria-label', 'Pause Music');
+                return true;
             }).catch(() => {
                 // Browsers reject autoplay until the visitor interacts with the page.
-            }).finally(() => {
-                playRequestInProgress = false;
+                return false;
             });
         };
 
@@ -37,11 +31,14 @@ document.addEventListener('DOMContentLoaded', () => {
         // First user gesture listener (triggers audio if autoplay was blocked by browser)
         const handleFirstInteraction = () => {
             if (!isPlaying) {
-                playAudio();
+                playAudio().then(started => {
+                    if (started) {
+                        document.removeEventListener('click', handleFirstInteraction);
+                        document.removeEventListener('keydown', handleFirstInteraction);
+                        document.removeEventListener('touchstart', handleFirstInteraction);
+                    }
+                });
             }
-            document.removeEventListener('click', handleFirstInteraction);
-            document.removeEventListener('keydown', handleFirstInteraction);
-            document.removeEventListener('touchstart', handleFirstInteraction);
         };
 
         document.addEventListener('click', handleFirstInteraction);
