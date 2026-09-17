@@ -3,20 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Applied AI & Data Science Portfolio</title>
+    <title>Darshan Jain | Applied AI & Data Science Portfolio</title>
     <link rel="stylesheet" href="styles.css">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="script.js" defer></script>
 </head>
 <body>
 
+    <!-- Custom Glowing Cursor Elements -->
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-outline" id="cursorOutline"></div>
+
     <!-- Sticky Navigation Bar -->
     <header class="navbar">
         <div class="nav-container">
-            <a href="#">Darshan<span> Jain</span></a>
+            <a href="#" class="logo">Darshan<span class="accent-text"> Jain</span></a>
             <button class="nav-toggle" id="navToggle" aria-label="Toggle Navigation">
                 <span class="bar"></span>
                 <span class="bar"></span>
@@ -36,9 +40,9 @@
     <section id="about" class="hero-section">
         <div class="hero-container">
             
-            <!-- Profile Image Container -->
+            <!-- Profile Image Container (.jpeg format) -->
             <div class="hero-image-wrapper">
-                <img src="images/profile.jpeg" alt="Your Name - Profile Headshot" class="profile-img" onerror="this.src='https://via.placeholder.com/200?text=Your+Photo'">
+                <img src="images/profile.jpeg" alt="Darshan Jain - Profile Headshot" class="profile-img" onerror="this.src='https://via.placeholder.com/180?text=Darshan+Jain'">
                 <div class="image-border-glow"></div>
             </div>
 
@@ -174,11 +178,11 @@
             <h2 class="section-title">Let's Connect</h2>
             <p class="footer-desc">Open for research collaborations, internship opportunities, and technical consulting.</p>
             <div class="social-links">
-                <a href="mailto:your.email@example.com" class="social-btn">Email</a>
+                <a href="mailto:your.email@iitj.ac.in" class="social-btn">Email</a>
                 <a href="https://linkedin.com" target="_blank" rel="noopener" class="social-btn">LinkedIn</a>
                 <a href="https://github.com" target="_blank" rel="noopener" class="social-btn">GitHub</a>
             </div>
-            <p class="copyright">© <span id="year"></span> Your Name · Built with HTML, CSS & JS</p>
+            <p class="copyright">© <span id="year"></span> Darshan Jain · Built with HTML, CSS & JS</p>
         </div>
     </footer>
 
