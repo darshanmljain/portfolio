@@ -12,7 +12,13 @@
 </head>
 <body>
 
-    <canvas id="cursorCanvas"></canvas>
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-outline" id="cursorOutline"></div>
+
+    <div id="imageModal" class="image-modal">
+        <span class="modal-close">&times;</span>
+        <img class="modal-content" id="modalImg" alt="Darshan Jain Profile Zoomed">
+    </div>
 
     <header class="navbar">
         <div class="nav-container">
@@ -35,7 +41,7 @@
     <section id="about" class="hero-section">
         <div class="hero-container">
             <div class="hero-image-wrapper">
-                <img src="images/profile.jpeg" alt="Darshan Jain - Profile Headshot" class="profile-img" onerror="this.src='https://via.placeholder.com/320?text=Darshan+Jain'">
+                <img src="images/profile.jpeg" alt="Darshan Jain - Profile Headshot" class="profile-img" id="profileImg" onerror="this.src='https://via.placeholder.com/340?text=Darshan+Jain'">
                 <div class="image-border-glow"></div>
             </div>
             <div class="hero-content">
