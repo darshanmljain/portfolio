@@ -174,23 +174,6 @@ a {
     box-shadow: 0 0 75px rgba(56, 189, 248, 0.6);
 }
 
-.zoom-hint {
-    margin-top: 0.75rem;
-    font-size: 0.78rem;
-    color: var(--text-muted);
-    background-color: rgba(30, 41, 59, 0.8);
-    border: 1px solid var(--card-border);
-    padding: 0.25rem 0.75rem;
-    border-radius: 20px;
-    pointer-events: none;
-    transition: var(--transition);
-}
-
-.hero-image-wrapper:hover .zoom-hint {
-    color: var(--accent-color);
-    border-color: var(--accent-color);
-}
-
 .hero-content {
     display: flex;
     flex-direction: column;
@@ -287,7 +270,6 @@ a {
     display: flex;
     align-items: center;
     border-bottom: 1px solid var(--card-border);
-
 }
 
 .terminal-buttons {
@@ -297,8 +279,9 @@ a {
 }
 
 .dot {
-    width: 10px;
+    width: 100px;
     height: 10px;
+    width: 10px;
     border-radius: 50%;
 }
 
@@ -371,28 +354,27 @@ a {
     color: var(--text-muted);
 }
 
-/* Guaranteed Soft Blurred Translucent Photo Zoom Modal */
+/* Translucent Soft Blurred Photo Lightbox Modal */
 .image-modal {
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(15, 23, 42, 0.75);
+    background-color: rgba(15, 23, 42, 0.78);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    z-index: 99999;
-    display: flex;
+    z-index: 999999;
     align-items: center;
     justify-content: center;
     opacity: 0;
-    pointer-events: none;
     transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.image-modal.open {
+.image-modal.show {
+    display: flex !important;
     opacity: 1;
-    pointer-events: auto;
 }
 
 .modal-card {
@@ -403,7 +385,7 @@ a {
     transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.image-modal.open .modal-card {
+.image-modal.show .modal-card {
     transform: scale(1);
 }
 
@@ -654,10 +636,10 @@ a {
     top: -100px;
     left: -100px;
     pointer-events: none;
-    z-index: 999999;
+    z-index: 9999999;
     transform: translate(-50%, -50%);
     box-shadow: 0 0 12px var(--accent-color);
-    transition: width 0.2s ease, height 0.2s ease;
+    transition: width 0.2s ease, height 0.2s ease, background-color 0.2s ease;
 }
 
 .cursor-outline {
@@ -669,14 +651,16 @@ a {
     top: -100px;
     left: -100px;
     pointer-events: none;
-    z-index: 999998;
+    z-index: 9999998;
     transform: translate(-50%, -50%);
-    transition: width 0.2s ease, height 0.2s ease;
+    transition: width 0.2s ease, height 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
 }
 
 body.cursor-hover .cursor-dot {
     width: 12px;
     height: 12px;
+    background-color: #38bdf8;
+    box-shadow: 0 0 15px #38bdf8;
 }
 
 body.cursor-hover .cursor-outline {
@@ -684,6 +668,13 @@ body.cursor-hover .cursor-outline {
     height: 60px;
     border-color: var(--accent-color);
     background-color: rgba(56, 189, 248, 0.1);
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
+}
+
+@media (pointer: coarse) {
+    .cursor-dot, .cursor-outline {
+        display: none !important;
+    }
 }
 
 @media (max-width: 768px) {
@@ -705,9 +696,5 @@ body.cursor-hover .cursor-outline {
         flex-direction: column;
         align-items: flex-start;
         gap: 1rem;
-    }
-
-    .cursor-dot, .cursor-outline {
-        display: none;
     }
 }

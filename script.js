@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Reliable Soft-Blur Photo Zoom Modal
+    // Soft-Blur Photo Zoom Lightbox Modal
     const modal = document.getElementById('imageModal');
     const profileImg = document.getElementById('profileImg');
     const modalImg = document.getElementById('modalImg');
@@ -53,14 +53,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (profileImg && modal && modalImg) {
         profileImg.addEventListener('click', (e) => {
+            e.preventDefault();
             e.stopPropagation();
             modalImg.src = profileImg.src;
-            modal.classList.add('open');
+            modal.classList.add('show');
             document.body.style.overflow = 'hidden';
         });
 
         const closeModal = () => {
-            modal.classList.remove('open');
+            modal.classList.remove('show');
             document.body.style.overflow = '';
         };
 
@@ -81,11 +82,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Custom Trailing Cursor
+    // Custom Trailing Cursor physics
     const cursorDot = document.getElementById('cursorDot');
     const cursorOutline = document.getElementById('cursorOutline');
 
-    if (cursorDot && cursorOutline && window.innerWidth > 768) {
+    if (cursorDot && cursorOutline && window.matchMedia('(pointer: fine)').matches) {
         let mouseX = -100;
         let mouseY = -100;
         let outlineX = -100;
