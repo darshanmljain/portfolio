@@ -8,7 +8,7 @@
     --accent-hover: #0284c7;
     --glow-color: rgba(56, 189, 248, 0.35);
     --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
-    --transition: all 0.3s ease;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 * {
@@ -63,6 +63,7 @@ a {
     text-align: center;
 }
 
+/* Navbar & Animated Links */
 .navbar {
     position: sticky;
     top: 0;
@@ -85,6 +86,11 @@ a {
     font-size: 1.25rem;
     font-weight: 700;
     letter-spacing: -0.025em;
+    transition: transform 0.2s ease;
+}
+
+.logo:hover {
+    transform: scale(1.03);
 }
 
 .accent-text {
@@ -102,11 +108,12 @@ a {
     color: var(--text-muted);
     font-size: 0.9rem;
     font-weight: 500;
-    transition: var(--transition);
+    transition: color 0.2s ease, transform 0.2s ease;
 }
 
 .nav-link:hover {
     color: var(--accent-color);
+    transform: translateY(-2px);
 }
 
 .btn-nav {
@@ -115,11 +122,18 @@ a {
     color: var(--accent-color);
     border: 1px solid var(--accent-color);
     border-radius: 6px;
+    transition: all 0.2s ease;
 }
 
 .btn-nav:hover {
     background-color: var(--accent-color);
     color: var(--bg-dark);
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 4px 15px var(--glow-color);
+}
+
+.btn-nav:active {
+    transform: translateY(0) scale(0.97);
 }
 
 .nav-toggle {
@@ -138,6 +152,7 @@ a {
     transition: var(--transition);
 }
 
+/* Hero Section & Profile Photo Animations */
 .hero-section {
     padding: 6rem 0 5rem 0;
     background: radial-gradient(circle at 50% 30%, rgba(56, 189, 248, 0.12) 0%, transparent 70%);
@@ -169,12 +184,16 @@ a {
     position: relative;
     z-index: 2;
     cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
 }
 
 .profile-img:hover {
-    transform: scale(1.04);
-    box-shadow: 0 0 70px rgba(56, 189, 248, 0.55);
+    transform: scale(1.06) rotate(1deg);
+    box-shadow: 0 0 80px rgba(56, 189, 248, 0.65);
+}
+
+.profile-img:active {
+    transform: scale(0.98);
 }
 
 .hero-content {
@@ -193,6 +212,12 @@ a {
     font-size: 0.8rem;
     font-weight: 600;
     margin-bottom: 1.25rem;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.badge:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent-color);
 }
 
 .hero-title {
@@ -227,7 +252,7 @@ a {
     border-radius: 8px;
     font-weight: 600;
     font-size: 0.95rem;
-    transition: var(--transition);
+    transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .btn-primary {
@@ -237,7 +262,12 @@ a {
 
 .btn-primary:hover {
     background-color: var(--accent-hover);
-    box-shadow: 0 4px 20px var(--glow-color);
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 8px 25px var(--glow-color);
+}
+
+.btn-primary:active {
+    transform: translateY(-1px) scale(0.97);
 }
 
 .btn-secondary {
@@ -247,37 +277,51 @@ a {
 }
 
 .btn-secondary:hover {
-    border-color: var(--text-muted);
+    border-color: var(--accent-color);
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(255, 255, 255, 0.05);
 }
 
+.btn-secondary:active {
+    transform: translateY(-1px) scale(0.97);
+}
+
+/* Translucent Soft Blur Modal & Animated Popup */
 .image-modal {
     display: none;
     position: fixed;
     z-index: 10000;
     left: 0;
     top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(15, 23, 42, 0.92);
-    backdrop-filter: blur(12px);
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(15, 23, 42, 0.65);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-modal.active {
+    display: flex;
+    opacity: 1;
 }
 
 .modal-content {
-    margin: 4% auto;
-    display: block;
     width: 90%;
-    max-width: 500px;
+    max-width: 480px;
     height: auto;
     border-radius: 50%;
     border: 4px solid var(--accent-color);
-    box-shadow: 0 0 60px rgba(56, 189, 248, 0.5);
-    animation: zoomIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 0 80px rgba(56, 189, 248, 0.6);
+    transform: scale(0.65) translateY(20px);
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-@keyframes zoomIn {
-    from { transform: scale(0.6); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
+.image-modal.active .modal-content {
+    transform: scale(1) translateY(0);
 }
 
 .modal-close {
@@ -288,13 +332,15 @@ a {
     font-size: 40px;
     font-weight: bold;
     cursor: pointer;
-    transition: var(--transition);
+    transition: transform 0.2s ease, color 0.2s ease;
 }
 
 .modal-close:hover {
     color: var(--accent-color);
+    transform: scale(1.2) rotate(90deg);
 }
 
+/* Cards & Skill Tags Animations */
 .skills-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -306,6 +352,13 @@ a {
     border: 1px solid var(--card-border);
     padding: 1.5rem;
     border-radius: 12px;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.skill-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--card-border);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
 }
 
 .skill-category {
@@ -327,6 +380,16 @@ a {
     padding: 0.3rem 0.75rem;
     border-radius: 6px;
     font-size: 0.825rem;
+    transition: all 0.25s ease;
+    cursor: default;
+}
+
+.tag:hover {
+    transform: translateY(-3px) scale(1.05);
+    background-color: rgba(56, 189, 248, 0.15);
+    border-color: var(--accent-color);
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(56, 189, 248, 0.2);
 }
 
 .section-header-flex {
@@ -349,13 +412,24 @@ a {
     border-radius: 6px;
     font-size: 0.85rem;
     cursor: pointer;
-    transition: var(--transition);
+    transition: all 0.25s ease;
 }
 
-.filter-btn.active, .filter-btn:hover {
+.filter-btn:hover {
+    transform: translateY(-2px);
+    color: var(--text-primary);
+    border-color: var(--accent-color);
+}
+
+.filter-btn.active {
     background-color: var(--accent-color);
     color: var(--bg-dark);
     border-color: var(--accent-color);
+    font-weight: 600;
+}
+
+.filter-btn:active {
+    transform: translateY(0) scale(0.96);
 }
 
 .projects-grid {
@@ -369,12 +443,13 @@ a {
     border: 1px solid var(--card-border);
     padding: 1.75rem;
     border-radius: 12px;
-    transition: var(--transition);
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .project-card:hover {
     border-color: var(--accent-color);
-    transform: translateY(-3px);
+    transform: translateY(-8px) scale(1.01);
+    box-shadow: 0 15px 35px rgba(56, 189, 248, 0.12);
 }
 
 .card-header {
@@ -415,6 +490,13 @@ a {
 .project-link {
     color: var(--accent-color);
     font-weight: 600;
+    transition: transform 0.2s ease, color 0.2s ease;
+    display: inline-block;
+}
+
+.project-link:hover {
+    transform: translateX(4px);
+    color: var(--accent-hover);
 }
 
 .education-card {
@@ -422,6 +504,12 @@ a {
     border: 1px solid var(--card-border);
     padding: 1.75rem;
     border-radius: 12px;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.education-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--card-border);
 }
 
 .edu-header {
@@ -463,11 +551,12 @@ a {
 .social-btn {
     color: var(--accent-color);
     font-weight: 500;
-    transition: var(--transition);
+    transition: transform 0.2s ease, color 0.2s ease;
 }
 
 .social-btn:hover {
     text-decoration: underline;
+    transform: translateY(-2px);
 }
 
 .copyright {
@@ -475,6 +564,7 @@ a {
     font-size: 0.8rem;
 }
 
+/* Custom Blue Dot + Outer Ring Cursor */
 .cursor-dot {
     width: 8px;
     height: 8px;

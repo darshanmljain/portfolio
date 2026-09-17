@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-
+    
     const yearSpan = document.getElementById('year');
     if (yearSpan) {
         yearSpan.textContent = new Date().getFullYear();
@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             projectCards.forEach(card => {
                 const category = card.getAttribute('data-category');
-
+                
                 if (filterValue === 'all' || category === filterValue) {
                     card.style.display = 'block';
                 } else {
@@ -42,6 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Smooth Soft-Blur Modal Zoom Logic
     const modal = document.getElementById('imageModal');
     const profileImg = document.getElementById('profileImg');
     const modalImg = document.getElementById('modalImg');
@@ -49,29 +50,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (profileImg && modal && modalImg) {
         profileImg.addEventListener('click', () => {
-            modal.style.display = 'block';
             modalImg.src = profileImg.src;
+            modal.classList.add('active');
         });
 
+        const closeModal = () => {
+            modal.classList.remove('active');
+        };
+
         if (modalClose) {
-            modalClose.addEventListener('click', () => {
-                modal.style.display = 'none';
-            });
+            modalClose.addEventListener('click', closeModal);
         }
 
         modal.addEventListener('click', (e) => {
             if (e.target === modal) {
-                modal.style.display = 'none';
+                closeModal();
             }
         });
 
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && modal.style.display === 'block') {
-                modal.style.display = 'none';
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                closeModal();
             }
         });
     }
 
+    // Custom Trailing Cursor Physics
     const cursorDot = document.getElementById('cursorDot');
     const cursorOutline = document.getElementById('cursorOutline');
 
@@ -101,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
         animateCursor();
 
         const interactiveElements = document.querySelectorAll('a, button, .project-card, .filter-btn, .skill-card, .social-btn, .tag, .profile-img');
-
+        
         interactiveElements.forEach(el => {
             el.addEventListener('mouseenter', () => {
                 document.body.classList.add('cursor-hover');
