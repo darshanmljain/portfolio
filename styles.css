@@ -2,12 +2,12 @@
    60-30-10 Color System & Theme Variables
    ========================================================================== */
 :root {
-    --bg-dark: #0f172a;       /* Slate Navy */
-    --card-bg: #1e293b;       /* Card Background */
+    --bg-dark: #0f172a;       /* 60% Slate Navy Canvas */
+    --card-bg: #1e293b;       /* 30% Structural Card Background */
     --card-border: #334155;
     --text-primary: #f8fafc;   /* White / Light Text */
     --text-muted: #94a3b8;
-    --accent-color: #38bdf8;   /* Cyan Accent */
+    --accent-color: #38bdf8;   /* 10% Cyan Accent */
     --accent-hover: #0284c7;
     --glow-color: rgba(56, 189, 248, 0.25);
     --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
@@ -143,7 +143,7 @@ a {
     transition: var(--transition);
 }
 
-/* Hero Section & Background Glow */
+/* Hero Section & Background Radial Glow */
 .hero-section {
     padding: 6rem 0 5rem 0;
     background: radial-gradient(circle at 50% 20%, rgba(56, 189, 248, 0.08) 0%, transparent 70%);
@@ -423,14 +423,27 @@ a {
     font-size: 0.8rem;
 }
 
-/* Custom Cursor (Active on Desktop >768px) */
+/* Custom Cursor (Active on Desktop >768px ONLY when JS initializes) */
 @media (min-width: 769px) {
-    body {
+    /* Hide default cursor ONLY when custom-cursor-active class is present */
+    body.custom-cursor-active,
+    body.custom-cursor-active a,
+    body.custom-cursor-active button,
+    body.custom-cursor-active .project-card,
+    body.custom-cursor-active .filter-btn,
+    body.custom-cursor-active .tag,
+    body.custom-cursor-active .social-btn {
         cursor: none;
     }
 
-    a, button, .project-card, .filter-btn, .tag, .social-btn {
-        cursor: none;
+    .cursor-dot,
+    .cursor-outline {
+        display: none;
+    }
+
+    body.custom-cursor-active .cursor-dot,
+    body.custom-cursor-active .cursor-outline {
+        display: block;
     }
 
     .cursor-dot {
@@ -478,7 +491,7 @@ a {
     }
 }
 
-/* Mobile Media Query */
+/* Mobile Responsiveness */
 @media (max-width: 768px) {
     .hero-container {
         flex-direction: column;
