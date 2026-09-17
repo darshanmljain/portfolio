@@ -12,13 +12,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (bgAudio && audioToggleBtn) {
         let isPlaying = false;
+        let playRequestInProgress = false;
 
         const playAudio = () => {
+            if (playRequestInProgress) {
+                return;
+            }
+
+            playRequestInProgress = true;
             bgAudio.play().then(() => {
                 isPlaying = true;
                 audioToggleBtn.classList.add('playing');
-            }).catch(err => {
-                console.log('Autoplay blocked by browser policy until interaction:', err);
+                audioToggleBtn.setAttribute('aria-label', 'Pause Music');
+            }).catch(() => {
+                // Browsers reject autoplay until the visitor interacts with the page.
+            }).finally(() => {
+                playRequestInProgress = false;
             });
         };
 
@@ -46,6 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 bgAudio.pause();
                 isPlaying = false;
                 audioToggleBtn.classList.remove('playing');
+                audioToggleBtn.setAttribute('aria-label', 'Play Music');
             } else {
                 playAudio();
             }
