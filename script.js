@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Smooth Soft-Blur Modal Zoom Logic
+    // Image Zoom Lightbox Modal Logic
     const modal = document.getElementById('imageModal');
     const profileImg = document.getElementById('profileImg');
     const modalImg = document.getElementById('modalImg');
@@ -51,11 +51,17 @@ document.addEventListener('DOMContentLoaded', () => {
     if (profileImg && modal && modalImg) {
         profileImg.addEventListener('click', () => {
             modalImg.src = profileImg.src;
-            modal.classList.add('active');
+            modal.style.display = 'flex';
+            setTimeout(() => {
+                modal.classList.add('active');
+            }, 10);
         });
 
         const closeModal = () => {
             modal.classList.remove('active');
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 300);
         };
 
         if (modalClose) {
@@ -69,13 +75,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && modal.classList.contains('active')) {
+            if (e.key === 'Escape') {
                 closeModal();
             }
         });
     }
 
-    // Custom Trailing Cursor Physics
+    // Custom Trailing Cursor Logic
     const cursorDot = document.getElementById('cursorDot');
     const cursorOutline = document.getElementById('cursorOutline');
 
