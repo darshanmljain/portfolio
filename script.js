@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
         yearSpan.textContent = new Date().getFullYear();
     }
 
-    // Audio Playback with Automatic First-Interaction Trigger & Toggle
+    // Audio Playback Handler
     const bgAudio = document.getElementById('bgAudio');
     const audioToggleBtn = document.getElementById('audioToggleBtn');
 
@@ -14,20 +14,18 @@ document.addEventListener('DOMContentLoaded', () => {
         let isPlaying = false;
 
         const playAudio = () => {
-            if (!isPlaying) {
-                bgAudio.play().then(() => {
-                    isPlaying = true;
-                    audioToggleBtn.classList.add('playing');
-                }).catch(err => {
-                    console.log('Autoplay deferred until user interaction:', err);
-                });
-            }
+            bgAudio.play().then(() => {
+                isPlaying = true;
+                audioToggleBtn.classList.add('playing');
+            }).catch(err => {
+                console.log('Autoplay blocked by browser policy until interaction:', err);
+            });
         };
 
-        // Attempt immediate playback
+        // Try playing automatically
         playAudio();
 
-        // Trigger on the visitor's very first click/tap anywhere on the site if browser blocked autoplay
+        // First user gesture listener (triggers audio if autoplay was blocked by browser)
         const handleFirstInteraction = () => {
             if (!isPlaying) {
                 playAudio();
@@ -43,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Circular 🎵 button manual toggle
         audioToggleBtn.addEventListener('click', (e) => {
-            e.stopPropagation(); // prevent document listener conflict
+            e.stopPropagation();
             if (isPlaying) {
                 bgAudio.pause();
                 isPlaying = false;
