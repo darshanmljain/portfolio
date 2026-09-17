@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Applied AI & Data Science Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <!-- Sticky Navigation Bar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">YourName<span class="accent-text">.ai</span></a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle Navigation">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#education" class="nav-link">Education</a></li>
+                <li><a href="#contact" class="nav-link btn-nav">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section with Profile Picture -->
+    <section id="about" class="hero-section">
+        <div class="hero-container">
+            
+            <!-- Profile Image Container -->
+            <div class="hero-image-wrapper">
+                <img src="images/profile.jpg" alt="Your Name - Profile Headshot" class="profile-img" onerror="this.src='https://via.placeholder.com/200?text=Your+Photo'">
+                <div class="image-border-glow"></div>
+            </div>
+
+            <!-- Hero Text Content -->
+            <div class="hero-content">
+                <div class="badge">
+                    🎓 IIT Jodhpur · B.S. in Applied AI & Data Science
+                </div>
+                <h1 class="hero-title">
+                    Building intelligent systems & <span class="gradient-text">data-driven solutions</span>.
+                </h1>
+                <p class="hero-description">
+                    Applied AI and Data Science student specializing in machine learning pipelines, deep learning models, and practical AI applications. Focused on turning complex data into business value.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary">View Projects</a>
+                    <a href="https://github.com" target="_blank" rel="noopener" class="btn btn-secondary">GitHub Profile</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Skills & Stack Section -->
+    <section id="skills" class="section">
+        <div class="section-container">
+            <h2 class="section-title">Technical Stack & Core Focus</h2>
+            <div class="skills-grid">
+                
+                <div class="skill-card">
+                    <h3 class="skill-category">Languages & Fundamentals</h3>
+                    <div class="tag-group">
+                        <span class="tag">Python</span>
+                        <span class="tag">SQL</span>
+                        <span class="tag">C++</span>
+                        <span class="tag">Data Structures</span>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <h3 class="skill-category">Machine Learning & AI</h3>
+                    <div class="tag-group">
+                        <span class="tag">PyTorch</span>
+                        <span class="tag">Scikit-Learn</span>
+                        <span class="tag">Pandas / NumPy</span>
+                        <span class="tag">NLP / LLMs</span>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <h3 class="skill-category">Tools & Deployment</h3>
+                    <div class="tag-group">
+                        <span class="tag">Git & GitHub</span>
+                        <span class="tag">FastAPI</span>
+                        <span class="tag">Streamlit</span>
+                        <span class="tag">Jupyter Lab</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Projects Section -->
+    <section id="projects" class="section">
+        <div class="section-container">
+            <div class="section-header-flex">
+                <div>
+                    <h2 class="section-title">Featured Projects</h2>
+                    <p class="section-subtitle">Hands-on applications, datasets, and predictive models.</p>
+                </div>
+                <!-- Filter Buttons -->
+                <div class="project-filters">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="ml">ML</button>
+                    <button class="filter-btn" data-filter="ai">AI/LLM</button>
+                </div>
+            </div>
+
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="project-card" data-category="ml">
+                    <div class="card-header">
+                        <h3>Predictive ML Pipeline</h3>
+                        <span class="status-badge">ML / Analytics</span>
+                    </div>
+                    <p class="project-desc">
+                        End-to-end classification model built to predict target outcomes from structured datasets with custom feature engineering.
+                    </p>
+                    <div class="card-footer">
+                        <span class="tech-stack">Python · PyTorch · Scikit-Learn</span>
+                        <a href="#" class="project-link">GitHub Code →</a>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card" data-category="ai">
+                    <div class="card-header">
+                        <h3>Interactive AI Web App</h3>
+                        <span class="status-badge">LLM / App</span>
+                    </div>
+                    <p class="project-desc">
+                        A streamlined web application showcasing real-time model inference, RAG pipelines, and interactive data visualizations.
+                    </p>
+                    <div class="card-footer">
+                        <span class="tech-stack">FastAPI · Streamlit · HuggingFace</span>
+                        <a href="#" class="project-link">Live Demo →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="section">
+        <div class="section-container">
+            <h2 class="section-title">Education & Academic Background</h2>
+            <div class="education-card">
+                <div class="edu-header">
+                    <h3>B.S. in Applied AI and Data Science</h3>
+                    <span class="institution">Indian Institute of Technology (IIT) Jodhpur</span>
+                </div>
+                <p class="edu-desc">
+                    Coursework focuses on Machine Learning, Statistical Modeling, Deep Learning, Data Structures, and Algorithmic Problem Solving.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer / Contact Section -->
+    <footer id="contact" class="footer">
+        <div class="section-container text-center">
+            <h2 class="section-title">Let's Connect</h2>
+            <p class="footer-desc">Open for research collaborations, internship opportunities, and technical consulting.</p>
+            <div class="social-links">
+                <a href="mailto:your.email@example.com" class="social-btn">Email</a>
+                <a href="https://linkedin.com" target="_blank" rel="noopener" class="social-btn">LinkedIn</a>
+                <a href="https://github.com" target="_blank" rel="noopener" class="social-btn">GitHub</a>
+            </div>
+            <p class="copyright">© <span id="year"></span> Your Name · Built with HTML, CSS & JS</p>
+        </div>
+    </footer>
+
+</body>
+</html>
