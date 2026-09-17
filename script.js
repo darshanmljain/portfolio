@@ -40,12 +40,16 @@ document.addEventListener('DOMContentLoaded', () => {
             document.removeEventListener('click', handleFirstInteraction);
             document.removeEventListener('keydown', handleFirstInteraction);
             document.removeEventListener('touchstart', handleFirstInteraction);
+            document.removeEventListener('mousemove', handleFirstInteraction);
+            document.removeEventListener('scroll', handleFirstInteraction);
         }
 
-        // Add first user gesture listeners
+        // Listen for any initial interaction to satisfy browser autoplay policies
         document.addEventListener('click', handleFirstInteraction);
         document.addEventListener('keydown', handleFirstInteraction);
         document.addEventListener('touchstart', handleFirstInteraction);
+        document.addEventListener('mousemove', handleFirstInteraction, { once: true });
+        document.addEventListener('scroll', handleFirstInteraction, { once: true });
 
         // Circular 🎵 Button Manual Toggle
         audioToggleBtn.addEventListener('click', (e) => {
@@ -57,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Audio File Error Detection
+        // 404 / Audio Load Error Detection
         bgAudio.addEventListener('error', () => {
             console.error('Audio Error Code:', bgAudio.error);
             alert('⚠️ Audio Load Error: Could not find "audio/fur-elise.mp3". Please verify that the file exists in your PORTFOLIO/audio folder and is named exactly "fur-elise.mp3".');
