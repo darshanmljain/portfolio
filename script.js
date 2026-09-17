@@ -1,5 +1,5 @@
-document.addEventListener('DOMContentLoaded', () =&gt; {
-    
+document.addEventListener('DOMContentLoaded', () => {
+
     const yearSpan = document.getElementById('year');
     if (yearSpan) {
         yearSpan.textContent = new Date().getFullYear();
@@ -8,13 +8,13 @@ document.addEventListener('DOMContentLoaded', () =&gt; {
     const navToggle = document.getElementById('navToggle');
     const navMenu = document.getElementById('navMenu');
 
-    if (navToggle &amp;&amp; navMenu) {
-        navToggle.addEventListener('click', () =&gt; {
+    if (navToggle && navMenu) {
+        navToggle.addEventListener('click', () => {
             navMenu.classList.toggle('active');
         });
 
-        document.querySelectorAll('.nav-link').forEach(link =&gt; {
-            link.addEventListener('click', () =&gt; {
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
                 navMenu.classList.remove('active');
             });
         });
@@ -23,16 +23,16 @@ document.addEventListener('DOMContentLoaded', () =&gt; {
     const filterButtons = document.querySelectorAll('.filter-btn');
     const projectCards = document.querySelectorAll('.project-card');
 
-    filterButtons.forEach(button =&gt; {
-        button.addEventListener('click', () =&gt; {
-            filterButtons.forEach(btn =&gt; btn.classList.remove('active'));
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            filterButtons.forEach(btn => btn.classList.remove('active'));
             button.classList.add('active');
 
             const filterValue = button.getAttribute('data-filter');
 
-            projectCards.forEach(card =&gt; {
+            projectCards.forEach(card => {
                 const category = card.getAttribute('data-category');
-                
+
                 if (filterValue === 'all' || category === filterValue) {
                     card.style.display = 'block';
                 } else {
@@ -45,15 +45,13 @@ document.addEventListener('DOMContentLoaded', () =&gt; {
     const cursorDot = document.getElementById('cursorDot');
     const cursorOutline = document.getElementById('cursorOutline');
 
-    if (cursorDot &amp;&amp; cursorOutline &amp;&amp; window.innerWidth &gt; 768) {
-        document.body.classList.add('custom-cursor-active');
-
+    if (cursorDot && cursorOutline && window.innerWidth > 768) {
         let mouseX = -100;
         let mouseY = -100;
         let outlineX = -100;
         let outlineY = -100;
 
-        window.addEventListener('mousemove', (e) =&gt; {
+        window.addEventListener('mousemove', (e) => {
             mouseX = e.clientX;
             mouseY = e.clientY;
 
@@ -62,8 +60,8 @@ document.addEventListener('DOMContentLoaded', () =&gt; {
         });
 
         function animateCursor() {
-            outlineX += (mouseX - outlineX) * 0.18;
-            outlineY += (mouseY - outlineY) * 0.18;
+            outlineX += (mouseX - outlineX) * 0.15;
+            outlineY += (mouseY - outlineY) * 0.15;
 
             cursorOutline.style.left = `${outlineX}px`;
             cursorOutline.style.top = `${outlineY}px`;
@@ -72,13 +70,13 @@ document.addEventListener('DOMContentLoaded', () =&gt; {
         }
         animateCursor();
 
-        const interactiveElements = document.querySelectorAll('a, button, .project-card, .filter-btn, .skill-card, .social-btn');
-        
-        interactiveElements.forEach(el =&gt; {
-            el.addEventListener('mouseenter', () =&gt; {
+        const interactiveElements = document.querySelectorAll('a, button, .project-card, .filter-btn, .skill-card, .social-btn, .tag');
+
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
                 document.body.classList.add('cursor-hover');
             });
-            el.addEventListener('mouseleave', () =&gt; {
+            el.addEventListener('mouseleave', () => {
                 document.body.classList.remove('cursor-hover');
             });
         });

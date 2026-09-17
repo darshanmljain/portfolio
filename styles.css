@@ -1,20 +1,16 @@
-/* ==========================================================================
-   60-30-10 Color System & Theme Variables
-   ========================================================================== */
 :root {
-    --bg-dark: #0f172a;       /* 60% Slate Navy Canvas */
-    --card-bg: #1e293b;       /* 30% Structural Card Background */
+    --bg-dark: #0f172a;
+    --card-bg: #1e293b;
     --card-border: #334155;
-    --text-primary: #f8fafc;   /* White / Light Text */
+    --text-primary: #f8fafc;
     --text-muted: #94a3b8;
-    --accent-color: #38bdf8;   /* 10% Cyan Accent */
+    --accent-color: #38bdf8;
     --accent-hover: #0284c7;
     --glow-color: rgba(56, 189, 248, 0.25);
     --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
     --transition: all 0.3s ease;
 }
 
-/* Base Reset & Global Styles */
 * {
     margin: 0;
     padding: 0;
@@ -67,7 +63,6 @@ a {
     text-align: center;
 }
 
-/* Navigation Bar */
 .navbar {
     position: sticky;
     top: 0;
@@ -143,7 +138,6 @@ a {
     transition: var(--transition);
 }
 
-/* Hero Section & Background Radial Glow */
 .hero-section {
     padding: 6rem 0 5rem 0;
     background: radial-gradient(circle at 50% 20%, rgba(56, 189, 248, 0.08) 0%, transparent 70%);
@@ -239,7 +233,6 @@ a {
     border-color: var(--text-muted);
 }
 
-/* Skills Cards */
 .skills-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -274,7 +267,6 @@ a {
     font-size: 0.825rem;
 }
 
-/* Projects & Filtering */
 .section-header-flex {
     display: flex;
     justify-content: space-between;
@@ -363,7 +355,6 @@ a {
     font-weight: 600;
 }
 
-/* Education Card */
 .education-card {
     background-color: var(--card-bg);
     border: 1px solid var(--card-border);
@@ -389,7 +380,6 @@ a {
     font-size: 0.9rem;
 }
 
-/* Footer & Socials */
 .footer {
     padding: 4rem 0 2rem 0;
     border-top: 1px solid var(--card-border);
@@ -423,75 +413,44 @@ a {
     font-size: 0.8rem;
 }
 
-/* Custom Cursor (Active on Desktop >768px ONLY when JS initializes) */
-@media (min-width: 769px) {
-    /* Hide default cursor ONLY when custom-cursor-active class is present */
-    body.custom-cursor-active,
-    body.custom-cursor-active a,
-    body.custom-cursor-active button,
-    body.custom-cursor-active .project-card,
-    body.custom-cursor-active .filter-btn,
-    body.custom-cursor-active .tag,
-    body.custom-cursor-active .social-btn {
-        cursor: none;
-    }
-
-    .cursor-dot,
-    .cursor-outline {
-        display: none;
-    }
-
-    body.custom-cursor-active .cursor-dot,
-    body.custom-cursor-active .cursor-outline {
-        display: block;
-    }
-
-    .cursor-dot {
-        width: 8px;
-        height: 8px;
-        background-color: var(--accent-color);
-        border-radius: 50%;
-        position: fixed;
-        top: 0;
-        left: 0;
-        pointer-events: none;
-        z-index: 9999;
-        transform: translate(-50%, -50%);
-        transition: width 0.2s ease, height 0.2s ease, background-color 0.2s ease;
-        box-shadow: 0 0 10px var(--accent-color);
-    }
-
-    .cursor-outline {
-        width: 36px;
-        height: 36px;
-        border: 1.5px solid rgba(56, 189, 248, 0.4);
-        border-radius: 50%;
-        position: fixed;
-        top: 0;
-        left: 0;
-        pointer-events: none;
-        z-index: 9998;
-        transform: translate(-50%, -50%);
-        transition: width 0.2s ease, height 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
-    }
-
-    body.cursor-hover .cursor-dot {
-        width: 12px;
-        height: 12px;
-        background-color: #38bdf8;
-        box-shadow: 0 0 15px #38bdf8;
-    }
-
-    body.cursor-hover .cursor-outline {
-        width: 52px;
-        height: 52px;
-        border-color: var(--accent-color);
-        background-color: rgba(56, 189, 248, 0.08);
-        box-shadow: 0 0 20px rgba(56, 189, 248, 0.15);
-    }
+/* Ambient Glow Cursor Follower (Native Cursor Remains Fully Visible) */
+.cursor-dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--accent-color);
+    border-radius: 50%;
+    position: fixed;
+    top: -100px;
+    left: -100px;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 12px var(--accent-color);
+    transition: width 0.2s ease, height 0.2s ease, background-color 0.2s ease;
 }
 
-/* Mobile Responsiveness */
+.cursor-outline {
+    width: 40px;
+    height: 40px;
+    border: 1.5px solid rgba(56, 189, 248, 0.5);
+    border-radius: 50%;
+    position: fixed;
+    top: -100px;
+    left: -100px;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: width 0.2s ease, height 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+body.cursor-hover .cursor-outline {
+    width: 60px;
+    height: 60px;
+    border-color: var(--accent-color);
+    background-color: rgba(56, 189, 248, 0.1);
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
+}
+
 @media (max-width: 768px) {
     .hero-container {
         flex-direction: column;
@@ -526,5 +485,9 @@ a {
         flex-direction: column;
         align-items: flex-start;
         gap: 1rem;
+    }
+
+    .cursor-dot, .cursor-outline {
+        display: none;
     }
 }
