@@ -104,7 +104,7 @@ a {
     color: var(--accent-color);
 }
 
-/* CD Music Button (Default: Static / Muted / Grayscale) */
+/* Custom PNG CD Button (Default: Static / Muted / Grayscale) */
 .audio-toggle-btn {
     background-color: rgba(30, 41, 59, 0.6);
     border: 1px solid var(--card-border);
@@ -114,11 +114,20 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.25rem;
     cursor: pointer;
     filter: grayscale(100%);
     opacity: 0.6;
+    padding: 0;
+    overflow: hidden;
     transition: filter 0.3s ease, opacity 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cd-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
 }
 
 .audio-toggle-btn:hover {
@@ -127,14 +136,14 @@ a {
     border-color: var(--accent-color);
 }
 
-/* CD Music Button (Playing: Full Color + 360 Degree CD Spinning Animation) */
+/* CD Music Button (Playing: Full Color + 360 Degree Spinning Animation) */
 .audio-toggle-btn.playing {
     background-color: rgba(56, 189, 248, 0.2);
     border-color: var(--accent-color);
     filter: grayscale(0%);
     opacity: 1;
     box-shadow: 0 0 20px rgba(56, 189, 248, 0.6);
-    animation: spinCD 3s linear infinite; /* Rotates like a spinning CD while playing */
+    animation: spinCD 3s linear infinite; /* 360 degree rotation while playing */
 }
 
 @keyframes spinCD {
