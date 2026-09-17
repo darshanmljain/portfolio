@@ -98,7 +98,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             requestAnimationFrame(animateCursor);
         }
-
         animateCursor();
 
         const interactiveElements = document.querySelectorAll('a, button, .project-card, .filter-btn, .skill-card, .social-btn, .tag, .profile-img');
@@ -107,7 +106,6 @@ document.addEventListener('DOMContentLoaded', () => {
             el.addEventListener('mouseenter', () => {
                 document.body.classList.add('cursor-hover');
             });
-
             el.addEventListener('mouseleave', () => {
                 document.body.classList.remove('cursor-hover');
             });

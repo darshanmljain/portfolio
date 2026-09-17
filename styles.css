@@ -250,7 +250,6 @@ a {
     border-color: var(--text-muted);
 }
 
-/* Image Zoom Lightbox Modal */
 .image-modal {
     display: none;
     position: fixed;
@@ -476,7 +475,6 @@ a {
     font-size: 0.8rem;
 }
 
-/* Blue Dot + Outer Trailing Ring Cursor */
 .cursor-dot {
     width: 8px;
     height: 8px;
