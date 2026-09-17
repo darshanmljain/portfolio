@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
+
     <!-- LINKED SCRIPT.JS WITH DEFER ATTRIBUTE -->
     <script src="script.js" defer></script>
 </head>
@@ -24,7 +24,7 @@
         Your browser does not support the audio element.
     </audio>
 
-    <!-- Photo Lightbox Modal (Enlarged Photo + Name Only) -->
+    <!-- Photo Lightbox Modal -->
     <div id="imageModal" class="image-modal">
         <span class="modal-close" id="modalClose">&times;</span>
         <div class="modal-card">
@@ -36,14 +36,16 @@
     <!-- Navigation Bar -->
     <header class="navbar">
         <div class="nav-container">
-            <a href="#" class="logo">Darshan<span class="accent-text"> Jain</span></a>
-            
-            <div class="nav-right-group">
-                <!-- Music Toggle Button (Custom PNG Image) -->
+            <!-- Left Group: Logo + CD Button -->
+            <div class="nav-left-group">
+                <a href="#" class="logo">Darshan<span class="accent-text"> Jain</span></a>
+                <!-- Music Toggle Button (CD Image next to name) -->
                 <button class="audio-toggle-btn" id="audioToggleBtn" aria-label="Toggle Music">
                     <img src="images/cd.png" alt="CD Music Icon" class="cd-img" id="cdImg" onerror="this.style.display='none'; this.parentNode.innerText='💿';">
                 </button>
+            </div>
 
+            <div class="nav-right-group">
                 <button class="nav-toggle" id="navToggle" aria-label="Toggle Navigation">
                     <span class="bar"></span>
                     <span class="bar"></span>
@@ -51,7 +53,7 @@
                 </button>
             </div>
 
-            <!-- Reordered Menu: About after Education -->
+            <!-- Navigation Links -->
             <ul class="nav-menu" id="navMenu">
                 <li><a href="#skills" class="nav-link">Skills</a></li>
                 <li><a href="#projects" class="nav-link">Projects</a></li>
