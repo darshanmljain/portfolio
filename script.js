@@ -1,10 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
-    
+
+    // Dynamic Year Update
     const yearSpan = document.getElementById('year');
     if (yearSpan) {
         yearSpan.textContent = new Date().getFullYear();
     }
 
+    // Navigation Toggle for Mobile
     const navToggle = document.getElementById('navToggle');
     const navMenu = document.getElementById('navMenu');
 
@@ -20,6 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Project Category Filtering
     const filterButtons = document.querySelectorAll('.filter-btn');
     const projectCards = document.querySelectorAll('.project-card');
 
@@ -42,26 +45,23 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Image Zoom Lightbox Modal Logic
+    // Reliable Soft-Blur Photo Zoom Modal
     const modal = document.getElementById('imageModal');
     const profileImg = document.getElementById('profileImg');
     const modalImg = document.getElementById('modalImg');
     const modalClose = document.getElementById('modalClose');
 
     if (profileImg && modal && modalImg) {
-        profileImg.addEventListener('click', () => {
+        profileImg.addEventListener('click', (e) => {
+            e.stopPropagation();
             modalImg.src = profileImg.src;
-            modal.style.display = 'flex';
-            setTimeout(() => {
-                modal.classList.add('active');
-            }, 10);
+            modal.classList.add('open');
+            document.body.style.overflow = 'hidden';
         });
 
         const closeModal = () => {
-            modal.classList.remove('active');
-            setTimeout(() => {
-                modal.style.display = 'none';
-            }, 300);
+            modal.classList.remove('open');
+            document.body.style.overflow = '';
         };
 
         if (modalClose) {
@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
+            if (e.target === modal || e.target === modalClose) {
                 closeModal();
             }
         });
@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Custom Trailing Cursor Logic
+    // Custom Trailing Cursor
     const cursorDot = document.getElementById('cursorDot');
     const cursorOutline = document.getElementById('cursorOutline');
 
