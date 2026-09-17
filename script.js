@@ -6,27 +6,50 @@ document.addEventListener('DOMContentLoaded', () => {
         yearSpan.textContent = new Date().getFullYear();
     }
 
-    // Audio Player Toggle Logic
+    // Audio Playback with Automatic First-Interaction Trigger & Toggle
     const bgAudio = document.getElementById('bgAudio');
     const audioToggleBtn = document.getElementById('audioToggleBtn');
 
     if (bgAudio && audioToggleBtn) {
         let isPlaying = false;
 
-        audioToggleBtn.addEventListener('click', () => {
+        const playAudio = () => {
+            if (!isPlaying) {
+                bgAudio.play().then(() => {
+                    isPlaying = true;
+                    audioToggleBtn.classList.add('playing');
+                }).catch(err => {
+                    console.log('Autoplay deferred until user interaction:', err);
+                });
+            }
+        };
+
+        // Attempt immediate playback
+        playAudio();
+
+        // Trigger on the visitor's very first click/tap anywhere on the site if browser blocked autoplay
+        const handleFirstInteraction = () => {
+            if (!isPlaying) {
+                playAudio();
+            }
+            document.removeEventListener('click', handleFirstInteraction);
+            document.removeEventListener('keydown', handleFirstInteraction);
+            document.removeEventListener('touchstart', handleFirstInteraction);
+        };
+
+        document.addEventListener('click', handleFirstInteraction);
+        document.addEventListener('keydown', handleFirstInteraction);
+        document.addEventListener('touchstart', handleFirstInteraction);
+
+        // Circular 🎵 button manual toggle
+        audioToggleBtn.addEventListener('click', (e) => {
+            e.stopPropagation(); // prevent document listener conflict
             if (isPlaying) {
                 bgAudio.pause();
-                audioToggleBtn.classList.remove('playing');
-                audioToggleBtn.querySelector('.audio-text').textContent = 'Für Elise';
                 isPlaying = false;
+                audioToggleBtn.classList.remove('playing');
             } else {
-                bgAudio.play().then(() => {
-                    audioToggleBtn.classList.add('playing');
-                    audioToggleBtn.querySelector('.audio-text').textContent = 'Playing...';
-                    isPlaying = true;
-                }).catch(err => {
-                    console.error('Audio playback interaction error:', err);
-                });
+                playAudio();
             }
         });
     }
@@ -107,7 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Custom Trailing Cursor physics
+    // Custom Trailing Cursor Physics
     const cursorDot = document.getElementById('cursorDot');
     const cursorOutline = document.getElementById('cursorOutline');
 
