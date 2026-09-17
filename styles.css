@@ -116,7 +116,7 @@ a {
     justify-content: center;
     font-size: 1.15rem;
     cursor: pointer;
-    filter: grayscale(100%); /* Keeps emoji non-colored when muted */
+    filter: grayscale(100%);
     opacity: 0.6;
     transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
@@ -128,11 +128,11 @@ a {
     transform: scale(1.08);
 }
 
-/* Music Button (Playing: Full Color & Glow) */
+/* Music Button (Playing: Full Color & Glowing Pulsing Ring) */
 .audio-toggle-btn.playing {
     background-color: rgba(56, 189, 248, 0.2);
     border-color: var(--accent-color);
-    filter: grayscale(0%); /* Restore full color emoji */
+    filter: grayscale(0%);
     opacity: 1;
     box-shadow: 0 0 20px rgba(56, 189, 248, 0.6);
     animation: musicPulse 1.5s infinite alternate ease-in-out;

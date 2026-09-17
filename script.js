@@ -13,49 +13,54 @@ document.addEventListener('DOMContentLoaded', () => {
     if (bgAudio && audioToggleBtn) {
         let isPlaying = false;
 
-        const playAudio = () => {
-            return bgAudio.play().then(() => {
+        async function playAudio() {
+            try {
+                await bgAudio.play();
                 isPlaying = true;
                 audioToggleBtn.classList.add('playing');
-                audioToggleBtn.setAttribute('aria-label', 'Pause Music');
-                return true;
-            }).catch(() => {
-                // Browsers reject autoplay until the visitor interacts with the page.
-                return false;
-            });
-        };
-
-        // Try playing automatically
-        playAudio();
-
-        // First user gesture listener (triggers audio if autoplay was blocked by browser)
-        const handleFirstInteraction = () => {
-            if (!isPlaying) {
-                playAudio().then(started => {
-                    if (started) {
-                        document.removeEventListener('click', handleFirstInteraction);
-                        document.removeEventListener('keydown', handleFirstInteraction);
-                        document.removeEventListener('touchstart', handleFirstInteraction);
-                    }
-                });
+                removeInteractionListeners();
+            } catch (err) {
+                console.warn('Autoplay waiting for user interaction:', err);
             }
-        };
+        }
 
+        function pauseAudio() {
+            bgAudio.pause();
+            isPlaying = false;
+            audioToggleBtn.classList.remove('playing');
+        }
+
+        function handleFirstInteraction() {
+            if (!isPlaying) {
+                playAudio();
+            }
+        }
+
+        function removeInteractionListeners() {
+            document.removeEventListener('click', handleFirstInteraction);
+            document.removeEventListener('keydown', handleFirstInteraction);
+            document.removeEventListener('touchstart', handleFirstInteraction);
+        }
+
+        // Add first user gesture listeners (overcomes browser autoplay restrictions)
         document.addEventListener('click', handleFirstInteraction);
         document.addEventListener('keydown', handleFirstInteraction);
         document.addEventListener('touchstart', handleFirstInteraction);
 
-        // Circular 🎵 button manual toggle
+        // Circular 🎵 Button Manual Toggle
         audioToggleBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             if (isPlaying) {
-                bgAudio.pause();
-                isPlaying = false;
-                audioToggleBtn.classList.remove('playing');
-                audioToggleBtn.setAttribute('aria-label', 'Play Music');
+                pauseAudio();
             } else {
                 playAudio();
             }
+        });
+
+        // 404 File Load Error Detection
+        bgAudio.addEventListener('error', () => {
+            console.error('Audio Error Code:', bgAudio.error);
+            alert('⚠️ Audio Load Error: Could not find "audio/fur-elise.mp3". Please verify that the file exists in your PORTFOLIO/audio folder and is named exactly "fur-elise.mp3".');
         });
     }
 
