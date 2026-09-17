@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const modal = document.getElementById('imageModal');
     const profileImg = document.getElementById('profileImg');
     const modalImg = document.getElementById('modalImg');
-    const modalClose = document.querySelector('.modal-close');
+    const modalClose = document.getElementById('modalClose');
 
     if (profileImg && modal && modalImg) {
         profileImg.addEventListener('click', () => {
@@ -61,6 +61,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         modal.addEventListener('click', (e) => {
             if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.style.display === 'block') {
                 modal.style.display = 'none';
             }
         });
