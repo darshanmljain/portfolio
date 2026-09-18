@@ -44,14 +44,14 @@ document.addEventListener('DOMContentLoaded', () => {
             document.removeEventListener('scroll', handleFirstInteraction);
         }
 
-        // Listen for any initial interaction to satisfy browser autoplay policies
+        // Listen for initial interactions to trigger audio
         document.addEventListener('click', handleFirstInteraction);
         document.addEventListener('keydown', handleFirstInteraction);
         document.addEventListener('touchstart', handleFirstInteraction);
         document.addEventListener('mousemove', handleFirstInteraction, { once: true });
         document.addEventListener('scroll', handleFirstInteraction, { once: true });
 
-        // Circular CD Button Manual Toggle
+        // CD Button Toggle
         audioToggleBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             if (isPlaying) {
@@ -61,14 +61,49 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Audio Load Error Detection
+        // Error detection
         bgAudio.addEventListener('error', () => {
             console.error('Audio Error Code:', bgAudio.error);
             alert('⚠️ Audio Load Error: Could not find "audio/fur-elise.mp3". Please verify that the file exists in your PORTFOLIO/audio folder and is named exactly "fur-elise.mp3".');
         });
     }
 
-    // Mobile Navigation Menu & Hamburger Animation Toggle
+    // Scroll Reveal Observer
+    const revealElements = document.querySelectorAll('.reveal');
+    if (revealElements.length > 0 && 'IntersectionObserver' in window) {
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, {
+            threshold: 0.12,
+            rootMargin: '0px 0px -40px 0px'
+        });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+    } else {
+        // Fallback for older browsers
+        revealElements.forEach(el => el.classList.add('active'));
+    }
+
+    // Tactile Button Click Ripple Effect
+    document.querySelectorAll('.btn, .filter-btn, .btn-nav, .social-btn').forEach(button => {
+        button.addEventListener('click', function(e) {
+            const circle = document.createElement('span');
+            circle.classList.add('btn-ripple');
+            const rect = this.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            circle.style.width = circle.style.height = `${size}px`;
+            circle.style.left = `${e.clientX - rect.left - size/2}px`;
+            circle.style.top = `${e.clientY - rect.top - size/2}px`;
+            this.appendChild(circle);
+            setTimeout(() => circle.remove(), 600);
+        });
+    });
+
+    // Mobile Navigation Menu Toggle
     const navToggle = document.getElementById('navToggle');
     const navMenu = document.getElementById('navMenu');
 
