@@ -596,7 +596,7 @@ h1, h2, h3, .logo, .hero-title, .section-title, .stat-number {
 }
 
 /* ==========================================================================
-   SKILLS, PROJECTS & FOOTER / CONTACT SECTION
+   SKILLS & PROJECTS SECTIONS
    ========================================================================== */
 
 .skills-grid {
@@ -746,33 +746,212 @@ h1, h2, h3, .logo, .hero-title, .section-title, .stat-number {
     transform: translateX(5px);
 }
 
-.education-card {
+/* ==========================================================================
+   EDUCATION & ACADEMIC BACKGROUND SECTION
+   ========================================================================== */
+
+.edu-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.edu-card {
     background-color: var(--card-bg);
     border: 1px solid var(--card-border);
-    padding: 1.75rem;
     border-radius: 12px;
+    padding: 1.6rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.edu-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent-color);
+    box-shadow: 0 12px 30px rgba(56, 189, 248, 0.12);
+}
+
+.edu-card-content {
+    flex: 1;
 }
 
 .edu-header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    margin-bottom: 0.5rem;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 0.6rem;
     flex-wrap: wrap;
-    gap: 0.5rem;
+}
+
+.edu-title-group h3 {
+    font-size: 1.15rem;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
 }
 
 .institution {
     color: var(--accent-color);
-    font-size: 0.9rem;
+    font-size: 0.925rem;
     font-weight: 600;
+    display: block;
+}
+
+.edu-badge {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.75rem;
+    background-color: rgba(56, 189, 248, 0.1);
+    color: var(--accent-color);
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    border-radius: 50px;
+    font-weight: 600;
+    white-space: nowrap;
 }
 
 .edu-desc {
     color: var(--text-muted);
     font-size: 0.9rem;
+    line-height: 1.55;
 }
 
+.edu-thumb-wrapper {
+    width: 85px;
+    height: 85px;
+    min-width: 85px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--card-border);
+    background-color: rgba(15, 23, 42, 0.6);
+}
+
+.edu-thumb {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.edu-card:hover .edu-thumb {
+    transform: scale(1.08);
+}
+
+/* Sub-Grid for Achievements & Beyond Academics */
+.edu-sub-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+}
+
+.edu-sub-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 1.6rem;
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.3s ease;
+}
+
+.edu-sub-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(56, 189, 248, 0.6);
+}
+
+.sub-card-title {
+    font-size: 1.1rem;
+    color: var(--text-primary);
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Achievements List */
+.achievement-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+}
+
+.achievement-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem 1rem;
+    background-color: rgba(15, 23, 42, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    transition: border-color 0.25s ease, background-color 0.25s ease;
+}
+
+.achievement-item:hover {
+    border-color: var(--accent-color);
+    background-color: rgba(56, 189, 248, 0.05);
+}
+
+.achievement-icon-wrapper {
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+    border-radius: 8px;
+    background-color: rgba(56, 189, 248, 0.1);
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.achievement-icon {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.achievement-emoji {
+    font-size: 1.1rem;
+}
+
+.achievement-info h4 {
+    font-size: 0.925rem;
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.achievement-detail {
+    font-size: 0.825rem;
+    color: var(--text-muted);
+}
+
+/* Beyond Academics List */
+.beyond-tags {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.beyond-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+.beyond-item strong {
+    color: var(--text-primary);
+}
+
+.beyond-bullet {
+    color: var(--accent-color);
+    font-size: 0.75rem;
+    margin-top: 0.15rem;
+}
+
+/* FOOTER SECTION */
 .footer {
     padding: 4rem 0 2.5rem 0;
     border-top: 1px solid var(--card-border);
@@ -1117,6 +1296,23 @@ body.cursor-hover .cursor-outline {
         top: 15px;
         right: 20px;
         font-size: 34px;
+    }
+}
+
+/* Mobile Screens (<= 640px) */
+@media (max-width: 640px) {
+    .edu-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .edu-thumb-wrapper {
+        width: 100%;
+        height: 110px;
+    }
+    
+    .edu-sub-grid {
+        grid-template-columns: 1fr;
     }
 }
 
