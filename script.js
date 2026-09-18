@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         }, {
-            threshold: 0.1,
+            threshold: 0.08,
             rootMargin: '0px 0px -20px 0px'
         });
 
@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 navToggle.classList.remove('active');
                 navMenu.classList.remove('active');
 
-                // Force immediately reveal target section elements (fixes blank contact section on click)
+                // Force immediately reveal target section elements
                 const targetId = link.getAttribute('href');
                 if (targetId && targetId.startsWith('#')) {
                     const targetSection = document.querySelector(targetId);
