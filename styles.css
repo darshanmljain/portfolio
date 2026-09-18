@@ -7,8 +7,12 @@
     --accent-color: #38bdf8;
     --accent-hover: #0284c7;
     --glow-color: rgba(56, 189, 248, 0.4);
+    
+    /* ENHANCED TYPOGRAPHY SYSTEM */
+    --font-heading: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
     --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
     --font-mono: 'Fira Code', monospace;
+    
     --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -41,6 +45,11 @@ a {
 img {
     max-width: 100%;
     height: auto;
+}
+
+/* HEADINGS DISPLAY FONT */
+h1, h2, h3, .logo, .hero-title, .section-title, .stat-number {
+    font-family: var(--font-heading);
 }
 
 .section-container {
@@ -271,7 +280,6 @@ img {
     align-items: center;
 }
 
-/* RESPONSIVELY SCALED PROFILE PHOTO */
 .profile-img {
     width: 320px;
     height: 320px;
