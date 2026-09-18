@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.addEventListener('mousemove', handleFirstInteraction, { once: true });
         document.addEventListener('scroll', handleFirstInteraction, { once: true });
 
-        // Circular 💿 Button Manual Toggle
+        // Circular CD Button Manual Toggle
         audioToggleBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             if (isPlaying) {
@@ -61,24 +61,26 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // 404 / Audio Load Error Detection
+        // Audio Load Error Detection
         bgAudio.addEventListener('error', () => {
             console.error('Audio Error Code:', bgAudio.error);
             alert('⚠️ Audio Load Error: Could not find "audio/fur-elise.mp3". Please verify that the file exists in your PORTFOLIO/audio folder and is named exactly "fur-elise.mp3".');
         });
     }
 
-    // Mobile Navigation Menu Toggle
+    // Mobile Navigation Menu & Hamburger Animation Toggle
     const navToggle = document.getElementById('navToggle');
     const navMenu = document.getElementById('navMenu');
 
     if (navToggle && navMenu) {
         navToggle.addEventListener('click', () => {
+            navToggle.classList.toggle('active');
             navMenu.classList.toggle('active');
         });
 
         document.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', () => {
+                navToggle.classList.remove('active');
                 navMenu.classList.remove('active');
             });
         });
