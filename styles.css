@@ -51,6 +51,7 @@ img {
 .section {
     padding: 5.5rem 0;
     border-top: 1px solid var(--card-border);
+    scroll-margin-top: 80px;
 }
 
 .section-title {
@@ -239,7 +240,7 @@ img {
 }
 
 /* ==========================================================================
-   HERO SECTION & ENHANCED PROFILE PHOTO
+   HERO SECTION & PROFILE PHOTO
    ========================================================================== */
 
 .hero-section {
@@ -265,7 +266,6 @@ img {
     align-items: center;
 }
 
-/* ENHANCED PROMINENT PROFILE PHOTO */
 .profile-img {
     width: 360px;
     height: 360px;
@@ -353,7 +353,6 @@ img {
     width: 100%;
 }
 
-/* BUTTON RIPPLE & PRESS MICRO-ANIMATIONS */
 .btn, .filter-btn, .btn-nav, .social-btn {
     position: relative;
     overflow: hidden;
@@ -398,7 +397,6 @@ img {
     box-shadow: 0 8px 25px rgba(255, 255, 255, 0.05);
 }
 
-/* RIPPLE EFFECT */
 .btn-ripple {
     position: absolute;
     background: rgba(255, 255, 255, 0.35);
@@ -529,7 +527,7 @@ img {
 }
 
 /* ==========================================================================
-   SKILLS & PROJECTS GRID
+   SKILLS, PROJECTS & FOOTER / CONTACT SECTION
    ========================================================================== */
 
 .skills-grid {
@@ -705,9 +703,11 @@ img {
     font-size: 0.9rem;
 }
 
+/* FOOTER WITH SCROLL-MARGIN FOR MOBILE CONTACT LINK */
 .footer {
     padding: 4.5rem 0 2.5rem 0;
     border-top: 1px solid var(--card-border);
+    scroll-margin-top: 80px;
 }
 
 .footer-desc {
@@ -741,7 +741,7 @@ img {
 }
 
 /* ==========================================================================
-   PAGE LOAD ENTRANCE KEYFRAME ANIMATIONS
+   PAGE ENTRANCE & SCROLL ANIMATIONS
    ========================================================================== */
 
 .anim-slide-down {
@@ -800,10 +800,6 @@ img {
     }
 }
 
-/* ==========================================================================
-   SCROLL REVEAL ANIMATIONS
-   ========================================================================== */
-
 .reveal {
     opacity: 0;
     transform: translateY(35px);
@@ -816,16 +812,16 @@ img {
 }
 
 /* ==========================================================================
-   LIGHTBOX MODAL & CURSOR
+   LIGHTBOX MODAL (TRUE CENTERED VIEWPORT ALIGNMENT)
    ========================================================================== */
 
 .image-modal {
     display: none;
     position: fixed;
-    top: 0;
-    left: 0;
+    inset: 0;
     width: 100vw;
     height: 100vh;
+    height: 100dvh;
     background-color: rgba(15, 23, 42, 0.88);
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
@@ -834,6 +830,8 @@ img {
     justify-content: center;
     opacity: 0;
     transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 1.5rem;
+    box-sizing: border-box;
 }
 
 .image-modal.show {
@@ -845,8 +843,10 @@ img {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     transform: scale(0.65);
     transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    margin: auto;
 }
 
 .image-modal.show .modal-card {
@@ -854,10 +854,10 @@ img {
 }
 
 .modal-content {
-    width: 520px;
-    height: 520px;
-    max-width: 88vw;
-    max-height: 70vh;
+    width: 480px;
+    height: 480px;
+    max-width: 85vw;
+    max-height: 60vh;
     border-radius: 50%;
     object-fit: cover;
     object-position: center top;
@@ -866,7 +866,7 @@ img {
 }
 
 .modal-caption {
-    margin-top: 1.5rem;
+    margin-top: 1.25rem;
     font-size: 1.25rem;
     color: var(--text-primary);
     font-weight: 700;
@@ -875,19 +875,24 @@ img {
 
 .modal-close {
     position: absolute;
-    top: 30px;
-    right: 40px;
+    top: 25px;
+    right: 30px;
     color: #ffffff;
-    font-size: 44px;
+    font-size: 40px;
     font-weight: 300;
     cursor: pointer;
     transition: transform 0.2s ease, color 0.2s ease;
+    z-index: 1000000;
 }
 
 .modal-close:hover {
     color: var(--accent-color);
     transform: scale(1.2) rotate(90deg);
 }
+
+/* ==========================================================================
+   CURSOR & RESPONSIVE BREAKPOINTS
+   ========================================================================== */
 
 .cursor-dot {
     width: 8px;
@@ -932,10 +937,6 @@ body.cursor-hover .cursor-outline {
     background-color: rgba(56, 189, 248, 0.1);
     box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
 }
-
-/* ==========================================================================
-   RESPONSIVE MEDIA QUERIES
-   ========================================================================== */
 
 @media (pointer: coarse) {
     .cursor-dot, .cursor-outline {
@@ -996,8 +997,8 @@ body.cursor-hover .cursor-outline {
     }
 
     .profile-img {
-        width: 260px;
-        height: 260px;
+        width: 290px;
+        height: 290px;
     }
 
     .hero-title {
@@ -1043,14 +1044,14 @@ body.cursor-hover .cursor-outline {
     }
 
     .modal-content {
-        width: 340px;
-        height: 340px;
+        width: 310px;
+        height: 310px;
     }
 
     .modal-close {
-        top: 20px;
-        right: 25px;
-        font-size: 36px;
+        top: 15px;
+        right: 20px;
+        font-size: 34px;
     }
 }
 
@@ -1060,8 +1061,8 @@ body.cursor-hover .cursor-outline {
     }
 
     .profile-img {
-        width: 210px;
-        height: 210px;
+        width: 250px;
+        height: 250px;
     }
 
     .badge {
@@ -1087,8 +1088,8 @@ body.cursor-hover .cursor-outline {
     }
 
     .modal-content {
-        width: 270px;
-        height: 270px;
+        width: 260px;
+        height: 260px;
     }
 
     .modal-caption {

@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
             document.removeEventListener('scroll', handleFirstInteraction);
         }
 
-        // Listen for initial interactions to trigger audio
+        // Listen for initial interactions
         document.addEventListener('click', handleFirstInteraction);
         document.addEventListener('keydown', handleFirstInteraction);
         document.addEventListener('touchstart', handleFirstInteraction);
@@ -78,13 +78,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         }, {
-            threshold: 0.12,
-            rootMargin: '0px 0px -40px 0px'
+            threshold: 0.1,
+            rootMargin: '0px 0px -20px 0px'
         });
 
         revealElements.forEach(el => revealObserver.observe(el));
     } else {
-        // Fallback for older browsers
         revealElements.forEach(el => el.classList.add('active'));
     }
 
@@ -103,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Mobile Navigation Menu Toggle
+    // Mobile Navigation Menu & Smooth Scroll Activation
     const navToggle = document.getElementById('navToggle');
     const navMenu = document.getElementById('navMenu');
 
@@ -114,9 +113,21 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', () => {
+            link.addEventListener('click', (e) => {
                 navToggle.classList.remove('active');
                 navMenu.classList.remove('active');
+
+                // Force immediately reveal target section elements (fixes blank contact section on click)
+                const targetId = link.getAttribute('href');
+                if (targetId && targetId.startsWith('#')) {
+                    const targetSection = document.querySelector(targetId);
+                    if (targetSection) {
+                        targetSection.querySelectorAll('.reveal').forEach(el => el.classList.add('active'));
+                        if (targetSection.classList.contains('reveal')) {
+                            targetSection.classList.add('active');
+                        }
+                    }
+                }
             });
         });
     }
@@ -144,7 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Photo Lightbox Zoom Modal
+    // Photo Lightbox Zoom Modal (Centered Viewport Control)
     const modal = document.getElementById('imageModal');
     const profileImg = document.getElementById('profileImg');
     const modalImg = document.getElementById('modalImg');
