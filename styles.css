@@ -85,7 +85,7 @@ h1, h2, h3, .logo, .hero-title, .section-title, .stat-number {
 }
 
 /* ==========================================================================
-   NAVIGATION BAR
+   NAVIGATION BAR & FLAG BADGE
    ========================================================================== */
 
 .navbar {
@@ -112,7 +112,50 @@ h1, h2, h3, .logo, .hero-title, .section-title, .stat-number {
 .nav-left-group {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: 0.65rem;
+}
+
+/* MINIMALIST WAVING FLAG BADGE */
+.flag-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 22px;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background-color: rgba(30, 41, 59, 0.8);
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.4);
+    position: relative;
+    cursor: default;
+    flex-shrink: 0;
+    transition: transform 0.25s ease;
+}
+
+.flag-badge:hover {
+    transform: scale(1.1);
+    border-color: var(--accent-color);
+}
+
+.flag-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    pointer-events: none;
+}
+
+.flag-emoji {
+    font-size: 1.05rem;
+    line-height: 1;
+    display: inline-block;
+    animation: waveFlag 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes waveFlag {
+    0% { transform: rotate(-6deg) scale(0.95); }
+    100% { transform: rotate(6deg) scale(1.05); }
 }
 
 .logo {
@@ -1088,6 +1131,11 @@ body.cursor-hover .cursor-outline {
         height: 180px;
     }
 
+    .flag-badge {
+        width: 28px;
+        height: 19px;
+    }
+
     .terminal-body {
         padding: 0.85rem;
         font-size: 0.75rem;
@@ -1123,8 +1171,13 @@ body.cursor-hover .cursor-outline {
         height: 160px;
     }
 
+    .flag-badge {
+        width: 25px;
+        height: 17px;
+    }
+
     .logo {
-        font-size: 1rem;
+        font-size: 0.95rem;
     }
 
     .audio-toggle-btn {

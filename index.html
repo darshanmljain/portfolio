@@ -38,9 +38,20 @@
     <!-- Navigation Bar -->
     <header class="navbar anim-slide-down">
         <div class="nav-container">
-            <!-- Left Group: Logo + CD Button -->
+            <!-- Left Group: Indian Flag Badge + Logo + CD Button -->
             <div class="nav-left-group">
+                
+                <!-- MINIMALIST INDIAN FLAG BADGE -->
+                <div class="flag-badge" title="Proudly Indian 🇮🇳">
+                    <video class="flag-video" autoplay loop muted playsinline onerror="this.style.display='none'; document.getElementById('flagFallback').style.display='inline-block';">
+                        <source src="video/flag.mp4" type="video/mp4">
+                        <source src="video/flag.webm" type="video/webm">
+                    </video>
+                    <span id="flagFallback" class="flag-emoji" style="display:none;">🇮🇳</span>
+                </div>
+
                 <a href="#" class="logo">Darshan<span class="accent-text"> Jain</span></a>
+                
                 <!-- Music Toggle Button (Custom CD Image) -->
                 <button class="audio-toggle-btn" id="audioToggleBtn" aria-label="Toggle Music">
                     <img src="images/cd.png" alt="CD Music Icon" class="cd-img" id="cdImg" onerror="this.style.display='none'; this.parentNode.innerText='💿';">
