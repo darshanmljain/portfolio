@@ -747,7 +747,7 @@ h1, h2, h3, .logo, .hero-title, .section-title, .stat-number {
 }
 
 /* ==========================================================================
-   EDUCATION & ACADEMIC BACKGROUND SECTION
+   EDUCATION SECTION WITH ANIMATED RUNNING BORDER FRAMES
    ========================================================================== */
 
 .edu-timeline {
@@ -760,7 +760,7 @@ h1, h2, h3, .logo, .hero-title, .section-title, .stat-number {
 .edu-card {
     background-color: var(--card-bg);
     border: 1px solid var(--card-border);
-    border-radius: 12px;
+    border-radius: 14px;
     padding: 1.6rem;
     display: flex;
     justify-content: space-between;
@@ -772,7 +772,7 @@ h1, h2, h3, .logo, .hero-title, .section-title, .stat-number {
 .edu-card:hover {
     transform: translateY(-4px);
     border-color: var(--accent-color);
-    box-shadow: 0 12px 30px rgba(56, 189, 248, 0.12);
+    box-shadow: 0 12px 30px rgba(56, 189, 248, 0.15);
 }
 
 .edu-card-content {
@@ -818,25 +818,66 @@ h1, h2, h3, .logo, .hero-title, .section-title, .stat-number {
     line-height: 1.55;
 }
 
+/* ANIMATED RUNNING BOUNDARY FRAME FOR SCHOOL THUMBNAILS */
 .edu-thumb-wrapper {
-    width: 85px;
+    position: relative;
+    width: 125px;
     height: 85px;
-    min-width: 85px;
+    min-width: 125px;
     border-radius: 10px;
     overflow: hidden;
-    border: 1px solid var(--card-border);
-    background-color: rgba(15, 23, 42, 0.6);
+    background-color: #0f172a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+/* 360-Degree Rotating Running Laser Light Beam */
+.edu-thumb-wrapper::before {
+    content: '';
+    position: absolute;
+    inset: -60%;
+    background: conic-gradient(
+        from 0deg,
+        transparent 0%,
+        var(--accent-color) 25%,
+        #818cf8 50%,
+        transparent 75%
+    );
+    animation: rotateBoundary 4s linear infinite;
+    z-index: -2;
+}
+
+/* Inner Background Mask to Keep Image Sharp */
+.edu-thumb-wrapper::after {
+    content: '';
+    position: absolute;
+    inset: 2px;
+    background: #0f172a;
+    border-radius: 8px;
+    z-index: -1;
+}
+
+@keyframes rotateBoundary {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 .edu-thumb {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain; /* Keeps whole photo visible without aggressive cropping */
+    border-radius: 6px;
+    padding: 2px;
+    image-rendering: -webkit-optimize-contrast;
     transition: transform 0.3s ease;
 }
 
 .edu-card:hover .edu-thumb {
-    transform: scale(1.08);
+    transform: scale(1.06);
 }
 
 /* Sub-Grid for Achievements & Beyond Academics */
@@ -849,7 +890,7 @@ h1, h2, h3, .logo, .hero-title, .section-title, .stat-number {
 .edu-sub-card {
     background-color: var(--card-bg);
     border: 1px solid var(--card-border);
-    border-radius: 12px;
+    border-radius: 14px;
     padding: 1.6rem;
     transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.3s ease;
 }
@@ -868,7 +909,7 @@ h1, h2, h3, .logo, .hero-title, .section-title, .stat-number {
     gap: 0.5rem;
 }
 
-/* Achievements List */
+/* Achievements List & Animated Icon Wrapper */
 .achievement-list {
     display: flex;
     flex-direction: column;
@@ -879,10 +920,10 @@ h1, h2, h3, .logo, .hero-title, .section-title, .stat-number {
     display: flex;
     align-items: center;
     gap: 1rem;
-    padding: 0.75rem 1rem;
+    padding: 0.85rem 1rem;
     background-color: rgba(15, 23, 42, 0.5);
     border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: 8px;
+    border-radius: 10px;
     transition: border-color 0.25s ease, background-color 0.25s ease;
 }
 
@@ -891,27 +932,58 @@ h1, h2, h3, .logo, .hero-title, .section-title, .stat-number {
     background-color: rgba(56, 189, 248, 0.05);
 }
 
+/* ANIMATED RUNNING BORDER FOR ACHIEVEMENT BADGES */
 .achievement-icon-wrapper {
-    width: 38px;
-    height: 38px;
-    min-width: 38px;
-    border-radius: 8px;
-    background-color: rgba(56, 189, 248, 0.1);
-    border: 1px solid rgba(56, 189, 248, 0.2);
+    position: relative;
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    border-radius: 10px;
+    background-color: #0f172a;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    padding: 2px;
+    box-shadow: 0 0 12px rgba(56, 189, 248, 0.25);
+    z-index: 1;
+}
+
+.achievement-icon-wrapper::before {
+    content: '';
+    position: absolute;
+    inset: -60%;
+    background: conic-gradient(
+        from 0deg,
+        transparent 0%,
+        var(--accent-color) 30%,
+        #38bdf8 60%,
+        transparent 90%
+    );
+    animation: rotateBoundary 3.5s linear infinite;
+    z-index: -2;
+}
+
+.achievement-icon-wrapper::after {
+    content: '';
+    position: absolute;
+    inset: 2px;
+    background: #0f172a;
+    border-radius: 8px;
+    z-index: -1;
 }
 
 .achievement-icon {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain; /* Full visibility for logos and certs without blur */
+    border-radius: 6px;
+    padding: 2px;
+    image-rendering: -webkit-optimize-contrast;
 }
 
 .achievement-emoji {
-    font-size: 1.1rem;
+    font-size: 1.15rem;
 }
 
 .achievement-info h4 {
@@ -1308,7 +1380,7 @@ body.cursor-hover .cursor-outline {
     
     .edu-thumb-wrapper {
         width: 100%;
-        height: 110px;
+        height: 120px;
     }
     
     .edu-sub-grid {
