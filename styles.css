@@ -12,10 +12,12 @@
     --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* GLOBAL TAP & HIGHLIGHT REMOVAL FOR MOBILE */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
 }
 
 html {
@@ -135,6 +137,8 @@ img {
     opacity: 0.6;
     padding: 0;
     overflow: hidden;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
     transition: filter 0.3s ease, opacity 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
 }
 
@@ -217,6 +221,7 @@ img {
     cursor: pointer;
     padding: 4px;
     z-index: 1001;
+    outline: none;
 }
 
 .nav-toggle .bar {
@@ -240,7 +245,7 @@ img {
 }
 
 /* ==========================================================================
-   HERO SECTION & PROFILE PHOTO
+   HERO SECTION & PROFILE PHOTO (WITH TAP HIGHLIGHT REMOVAL)
    ========================================================================== */
 
 .hero-section {
@@ -266,6 +271,7 @@ img {
     align-items: center;
 }
 
+/* PROMINENT PROFILE PHOTO WITH NO MOBILE TAP BOX */
 .profile-img {
     width: 360px;
     height: 360px;
@@ -277,8 +283,18 @@ img {
     z-index: 2;
     cursor: pointer;
     image-rendering: -webkit-optimize-contrast;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    outline: none;
+    user-select: none;
     transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
     animation: profilePulse 4s ease-in-out infinite;
+}
+
+.profile-img:focus,
+.profile-img:active {
+    outline: none;
+    border-color: var(--accent-color);
 }
 
 .profile-img:hover {
@@ -356,6 +372,8 @@ img {
 .btn, .filter-btn, .btn-nav, .social-btn {
     position: relative;
     overflow: hidden;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .btn {
@@ -703,7 +721,6 @@ img {
     font-size: 0.9rem;
 }
 
-/* FOOTER WITH SCROLL-MARGIN FOR MOBILE CONTACT LINK */
 .footer {
     padding: 4.5rem 0 2.5rem 0;
     border-top: 1px solid var(--card-border);
@@ -812,7 +829,7 @@ img {
 }
 
 /* ==========================================================================
-   LIGHTBOX MODAL (TRUE CENTERED VIEWPORT ALIGNMENT)
+   LIGHTBOX MODAL (TRUE CENTERED VIEWPORT ALIGNMENT & TAP FIX)
    ========================================================================== */
 
 .image-modal {
@@ -863,6 +880,10 @@ img {
     object-position: center top;
     border: 5px solid var(--accent-color);
     box-shadow: 0 0 80px rgba(56, 189, 248, 0.65), 0 25px 60px rgba(0, 0, 0, 0.85);
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    outline: none;
+    user-select: none;
 }
 
 .modal-caption {
@@ -883,6 +904,8 @@ img {
     cursor: pointer;
     transition: transform 0.2s ease, color 0.2s ease;
     z-index: 1000000;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .modal-close:hover {
